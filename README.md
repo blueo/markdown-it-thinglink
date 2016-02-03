@@ -1,6 +1,6 @@
-# markdown-it-video
+# markdown-it-apester
 
-> markdown-it plugin for embedding hosted videos.
+> markdown-it plugin for adding [apester](http://apester.com/) html5 tokens
 
 ## Usage
 
@@ -8,10 +8,10 @@
 
 ```js
 var md = require('markdown-it')({
-  html: true,
+  html: true, // <-- markdown-it options which are, well optional...
   linkify: true,
   typography: true
-}).use(require('markdown-it-video')); // <-- this use(package_name) is required
+}).use(require('markdown-it-apester')); // <-- this use(package_name) is required
 ```
 
 #### Example
@@ -19,30 +19,20 @@ var md = require('markdown-it')({
 This only works in the inline style.
 
 ```md
-@[youtube](dQw4w9WgXcQ)
+@[apester](dQw4w9WgXcQ)
 ```
 
 is interpreted as
 
 ```html
-<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390"
-  src="http://www.youtube.com/embed/dQw4w9WgXcQ"
-  frameborder="0"/></div></p>
+<p><interaction id="dQw4w9WgXcQ"></interaction></p>
 ```
 
-Alternately, you could use a number of different YouTube URL formats rather than just the video id.
+Note that you will need to include the [apester SDK](http://help.apester.com/hc/en-us/articles/205649881-SDK-Documentation) in your page to load the embedded content.
 
-```md
-@[youtube](http://www.youtube.com/embed/dQw4w9WgXcQ)
-@[youtube](https://www.youtube.com/watch?v=dQw4w9WgXcQ&feature=feedrec_centerforopenscience_index)
-@[youtube](http://www.youtube.com/user/IngridMichaelsonVEVO#p/a/u/1/QdK8U-VIH_o)
-@[youtube](http://www.youtube.com/v/dQw4w9WgXcQ?fs=1&amp;hl=en_US&amp;rel=0)
-@[youtube](http://www.youtube.com/watch?v=dQw4w9WgXcQ#t=0m10s)
-@[youtube](http://www.youtube.com/embed/dQw4w9WgXcQ?rel=0)
-@[youtube](http://www.youtube.com/watch?v=dQw4w9WgXcQ)
-@[youtube](http://youtu.be/dQw4w9WgXcQ)
-```
 
 ## Currently supported services
- * YouTube
- * Vimeo
+ * Apester
+
+## Acknowledgements
+This plugin is heavily based on the code from [brianjgeiger/markdown-it-video](https://github.com/brianjgeiger/markdown-it-video)

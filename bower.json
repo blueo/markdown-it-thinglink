@@ -1,10 +1,10 @@
 {
-  "name": "markdown-it-video",
-  "version": "0.2.1",
+  "name": "markdown-it-apester",
+  "version": "0.0.1",
   "authors": [
-    "Brian J. Geiger <bgeiger@pobox.com>"
+    "Bernard Hamlin"
   ],
-  "description": "Markdown-it plugin to embed a hosted video",
+  "description": "Markdown-it plugin embed apester content",
   "main": "index.js",
   "kewords": [
     "markdown-it",

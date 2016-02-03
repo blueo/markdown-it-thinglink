@@ -1,21 +1,21 @@
 {
-  "name": "markdown-it-video",
+  "name": "markdown-it-apester",
   "version": "0.2.1",
-  "description": "Markdown-it plugin to embed a hosted videos",
+  "description": "Markdown-it plugin to embed a hosted apesters",
   "main": "index.js",
   "scripts": {
     "test": "make test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/brianjgeiger/markdown-it-video"
+    "url": "https://github.com/blueo/markdown-it-apester"
   },
-  "author": "brianjgeiger",
+  "author": "blueo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/brianjgeiger/markdown-it-video/issues"
+    "url": "https://github.com/blueo/markdown-it-apester/issues"
   },
-  "homepage": "https://github.com/brianjgeiger/markdown-it-video",
+  "homepage": "https://github.com/blueo/markdown-it-apester",
   "keywords": [
     "markdown-it",
     "markdown-it-plugin"
