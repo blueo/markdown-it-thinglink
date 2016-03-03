@@ -1,20 +1,20 @@
-// Process @[apester](apesterId)
+// Process @[thinglink](thinglinkId)
 
 'use strict';
 
-function apester_embed(md) {
-  function apester_return(state, silent) {
+function thinglink_embed(md) {
+  function thinglink_return(state, silent) {
     /*eslint-disable no-unused-vars */
     var
     serviceEnd,
     serviceStart,
-    apesterId = '',
+    thinglinkId = '',
     tokens,
     token;
     /*eslint-enable */
 
-    // When we add more services, (apester) might be (apester|otherservice), for example
-    var EMBED_REGEX = /@\[(apester)\]\([\s]*(.*?)[\s]*[\)]/im;
+    // When we add more services, (thinglink) might be (thinglink|otherservice), for example
+    var EMBED_REGEX = /@\[(thinglink)\]\([\s]*(.*?)[\s]*[\)]/im;
 
 
     if (state.src.charCodeAt(state.pos) !== 0x40/* @ */) {
@@ -36,11 +36,11 @@ function apester_embed(md) {
 
 
     var service = match[1];
-    apesterId = match[2];
+    thinglinkId = match[2];
 
-    // If the apesterId field is empty, regex currently make it the close parenthesis.
-    if (apesterId === ')') {
-      apesterId = '';
+    // If the thinglinkId field is empty, regex currently make it the close parenthesis.
+    if (thinglinkId === ')') {
+      thinglinkId = '';
     }
 
     serviceStart = state.pos + 2;
@@ -63,7 +63,7 @@ function apester_embed(md) {
       newState.md.inline.tokenize(newState);
 
       token = state.push('interaction', '');
-      token.apesterId = apesterId;
+      token.thinglinkId = thinglinkId;
       token.service = service;
       token.level = state.level;
     }
@@ -73,25 +73,25 @@ function apester_embed(md) {
     return true;
   }
 
-  return apester_return;
+  return thinglink_return;
 }
 
-function tokenize_apester(apesterId) {
-  var embedStart = '<interaction id="';
-  var embedEnd = '"></interaction>';
-  return embedStart + apesterId + embedEnd;
+function tokenize_thinglink(thinglinkId) {
+  var embedStart = '<img style="max-width:100%" src="';
+  var embedEnd = '" class="alwaysThinglink"/>';
+  return embedStart + thinglinkId + embedEnd;
 }
 
 function tokenize_interaction(md) {
   function tokenize_return(tokens, idx) {
-    var apesterId = md.utils.escapeHtml(tokens[idx].apesterId);
+    var thinglinkId = md.utils.escapeHtml(tokens[idx].thinglinkId);
     var service = md.utils.escapeHtml(tokens[idx].service);
-    if (apesterId === '') {
+    if (thinglinkId === '') {
       return '';
     }
 
-    if (service.toLowerCase() === 'apester') {
-      return tokenize_apester(apesterId);
+    if (service.toLowerCase() === 'thinglink') {
+      return tokenize_thinglink(thinglinkId);
     }
     return ('');
 
@@ -100,7 +100,7 @@ function tokenize_interaction(md) {
   return tokenize_return;
 }
 
-module.exports = function apester_plugin(md) {
+module.exports = function thinglink_plugin(md) {
   md.renderer.rules.interaction = tokenize_interaction(md);
-  md.inline.ruler.before('emphasis', 'apester', apester_embed(md));
+  md.inline.ruler.before('emphasis', 'thinglink', thinglink_embed(md));
 };
