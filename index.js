@@ -62,7 +62,7 @@ function thinglink_embed(md) {
         );
       newState.md.inline.tokenize(newState);
 
-      token = state.push('interaction', '');
+      token = state.push('thinglinkInteraction', '');
       token.thinglinkId = thinglinkId;
       token.service = service;
       token.level = state.level;
@@ -101,6 +101,6 @@ function tokenize_interaction(md) {
 }
 
 module.exports = function thinglink_plugin(md) {
-  md.renderer.rules.interaction = tokenize_interaction(md);
+  md.renderer.rules.thinglinkInteraction = tokenize_interaction(md);
   md.inline.ruler.before('emphasis', 'thinglink', thinglink_embed(md));
 };
